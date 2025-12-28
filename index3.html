@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Stacy 😘</title>
+<style>
+body {
+  margin:0;
+  padding:0;
+  overflow:hidden;
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  height:100vh;
+}
+.container {
+  width:100%;
+  padding:20px;
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+}
+h1 { font-size:4em; margin-bottom:25px; }
+p { font-size:2.5em; max-width:900px; margin:0 auto 40px; line-height:1.6; }
+input[type="password"] {
+  font-size:2em;
+  padding:20px 30px;
+  border-radius:30px;
+  border:none;
+  text-align:center;
+  margin-top:20px;
+}
+button {
+  font-size:2em;
+  padding:20px 45px;
+  border-radius:35px;
+  border:none;
+  cursor:pointer;
+  margin:15px;
+  color:#ff416c;
+  background:white;
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+  transition: transform 0.3s, background 0.3s;
+}
+button:hover { transform:scale(1.1); background:#ffe6eb; }
+.hidden { display:none; }
+.typing {
+  font-size:3em;
+  border-right:4px solid rgba(255,255,255,0.9);
+  display:inline;
+  padding-right:6px;
+  animation: blink 1s infinite;
+}
+@keyframes blink { 50% { border-color: transparent; } }
+.heart {
+  position:absolute;
+  color: rgba(255,255,255,0.8);
+  font-size:30px;
+  animation: float 8s linear infinite;
+}
+@keyframes float {
+  0% { transform: translateY(100vh) scale(0.8); opacity:0; }
+  10% { opacity:1; }
+  100% { transform: translateY(-20vh) scale(1.4); opacity:0; }
+}
+</style>
+</head>
+<body>
+
+<audio id="bgMusic" autoplay loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container" id="screen1">
+  <h1>Hey Stacy 😘</h1>
+  <p>Take a deep breath… are you ready? 😏</p>
+  <button onclick="goToScreen2()">Continue 💋</button>
+</div>
+
+<div class="container hidden" id="screen2">
+  <h1>Enter the secret password 🔐</h1>
+  <input type="password" id="passwordInput" placeholder="Password">
+  <br>
+  <button onclick="checkPassword()">Unlock 🔓</button>
+</div>
+
+<div class="container hidden" id="screen3">
+  <h1>Just one question… 😌</h1>
+  <p>Are you alone? Because what comes next is just for you 🔥</p>
+  <button onclick="goToScreen4()">Yes 😏</button>
+  <button onclick="alert('Come back when you are alone 😘')">Not yet 🙈</button>
+</div>
+
+<div class="container hidden" id="screen4">
+  <p id="typedText"></p>
+  <p class="hidden" id="finalLine"><em>I can’t wait to hold you close… 😏🔥</em></p>
+</div>
+
+<script>
+const screen1=document.getElementById("screen1");
+const screen2=document.getElementById("screen2");
+const screen3=document.getElementById("screen3");
+const screen4=document.getElementById("screen4");
+const typedText=document.getElementById("typedText");
+const finalLine=document.getElementById("finalLine");
+
+function goToScreen2(){screen1.classList.add("hidden");screen2.classList.remove("hidden");}
+function checkPassword(){
+  const input=document.getElementById("passwordInput").value;
+  if(input==="Sal+Stacy"){screen2.classList.add("hidden");screen3.classList.remove("hidden");}
+  else alert("Wrong password 😏 Try again");
+}
+function goToScreen4(){screen3.classList.add("hidden");screen4.classList.remove("hidden");fakeTyping();}
+
+// Array of 45+ messages for long 5+ minutes experience
+const messages=[
+"I’ve been thinking about you all day… your smile, your laugh… 😏",
+"Every little thing you do makes me want to be closer… 🔥",
+"If you were here, I’d lean in slowly… just enough to make your heart race 😈",
+"I imagine holding your hand, feeling your warmth… your touch sends shivers down my spine 😌",
+"The way you tease me without even trying… it drives me wild 😏",
+"I love how you look at me, knowing exactly what you’re doing 😘",
+"If I could, I’d whisper all my secrets in your ear… just you and me… 🔥",
+"Your laugh… I could listen to it forever… it’s addictive 😈",
+"I want to be the reason you blush, the reason your heart skips… 😏",
+"I can’t stop thinking about your lips… what I’d do if I were closer 😌",
+"Your scent lingers in my mind, I can’t forget it… 🔥",
+"Every text from you makes my pulse rise 😈",
+"If I could, I’d trace my fingers along your skin… slowly… 😏",
+"You have no idea how much I want to kiss you right now 🔥",
+"I imagine us together, laughing, teasing, and getting lost in each other 😌",
+"Even your smallest glance makes my heart race 😏",
+"I want to hear your whisper, feel your breath on my neck 😈",
+"If you were here, I wouldn’t let go for hours 🔥",
+"Your eyes… they pull me in like a magnet 😌",
+"I’ve dreamed about this moment with you… it feels real 😏",
+"Every time I think of you, I smile uncontrollably 😈",
+"I want to see you shiver when I get close 🔥",
+"I want to tease you endlessly until you can’t take it 😏",
+"I’m counting down the moments until I see you again… 😌",
+"You’re my favorite thought, my sweetest desire 🔥",
+"Just imagining you makes everything else fade away 😈",
+"I’ll keep sending these thoughts until you can’t resist 😏",
+"You make me feel alive in ways no one else can 🔥",
+"Can you feel my heart beating faster, just for you? 😌",
+"My mind keeps replaying every smile, every touch… 😏",
+"Every heartbeat whispers your name… 🔥",
+"Your presence lingers even when you’re not here 😈",
+"The way you move… I can’t get enough 😏",
+"I want to tell you all the naughty things I imagine 🔥",
+"Your lips… I can’t stop thinking about them 😈",
+"The way you look at me… it’s electric 😏",
+"Every second without you feels like forever 🔥",
+"I dream of you, and it feels too real 😈",
+"Your voice… I could listen to it for hours 😏",
+"Every secret thought I have… it’s about you 🔥",
+"Being near you… I feel alive 😈",
+"Every time I close my eyes, I see you 😏",
+"I can’t wait to hold you tight… 🔥",
+"You’re my sweetest obsession 😈",
+"Every whisper between us makes me weak 😏"
+];
+
+let msgIndex=0,charIndex=0,speed=80; // slower for suspense
+
+function fakeTyping(){
+  typedText.classList.add("typing");
+  typedText.innerHTML="";
+  typeMessage();
+}
+
+function typeMessage(){
+  if(msgIndex<messages.length){
+    const currentMsg=messages[msgIndex];
+    if(charIndex<currentMsg.length){
+      typedText.innerHTML+=currentMsg.charAt(charIndex);
+      charIndex++;
+      setTimeout(typeMessage,speed);
+    } else {
+      typedText.innerHTML+="<br><br>";
+      charIndex=0;
+      msgIndex++;
+      setTimeout(typeMessage,1200); // pause between messages
+    }
+  } else { typedText.classList.remove("typing"); setTimeout(()=>finalLine.classList.remove("hidden"),1500); }
+}
+
+// Floating hearts
+setInterval(()=>{
+  const heart=document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML="❤️";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.fontSize=(25+Math.random()*40)+"px";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),8000);
+},200);
+</script>
+
+</body>
+</html>
